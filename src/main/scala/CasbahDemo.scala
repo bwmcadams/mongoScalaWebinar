@@ -185,7 +185,9 @@ object CasbahDemo extends Application {
 
   // Wait ... Why didn't MongoDB Fail?!?
 
-  
+  // Do it with a WriteConcern instead.
+
+  mongo.insert(mongoChina, WriteConcern.Safe)
 
 }
 
