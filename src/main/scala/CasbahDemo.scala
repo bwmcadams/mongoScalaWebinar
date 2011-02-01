@@ -181,13 +181,9 @@ object CasbahDemo extends Application {
 
   mongo.insert(mongoChina)
 
-  println("If you're reading this, no exception was thrown on index violation....")
+  println("\nIf you're reading this, no exception was thrown on index violation....\n")
 
   // Wait ... Why didn't MongoDB Fail?!?
-
-  // Do it with a WriteConcern instead.
-
-  mongo.insert(mongoChina, WriteConcern.Safe)
 
 }
 
