@@ -1,6 +1,6 @@
 package com.mongodb.demo;
 package webinar;
-package casbah;
+package scala;
 
 // Imports Commons, Core, and the Query DSL
 import com.mongodb.casbah.Imports._

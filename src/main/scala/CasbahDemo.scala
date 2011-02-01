@@ -1,6 +1,6 @@
 package com.mongodb.demo;
 package webinar;
-package casbah;
+package scala;
 
 // Imports Commons, Core, and the Query DSL
 import com.mongodb.casbah.Imports._
@@ -31,8 +31,8 @@ object CasbahDemo extends Application {
   // We provide a Scala 2.8 collections builder using "Pimp My Library"
   val atlBuilder = MongoDBObject.newBuilder
   atlBuilder += "name" -> "Mongo Atlanta"
-  atlBuilder += "type" -> "Conference"
-  atlBuilder += "subtype" -> "Full Day"
+  atlBuilder += "eventType" -> "Conference"
+  atlBuilder += "eventSubType" -> "Full Day"
   atlBuilder += "location" -> MongoDBObject( // Create a subdocument using factory constructor
     "venueName" -> "GTRI Conference Center",
     "url" -> "http://www.gtri.gatech.edu/atlanta/conference-center",
@@ -57,7 +57,7 @@ object CasbahDemo extends Application {
 
   val scalaWebinar = MongoDBObject(
     "name" -> "MongoDB and Scala",
-    "type" -> "Webinar",
+    "eventType" -> "Webinar",
     "date" -> MongoDBObject(
       "start" -> new DateTime(2011, 2, 1, 13, 0, 0, 0)
     ),
@@ -69,7 +69,7 @@ object CasbahDemo extends Application {
 
   val shardingWebCast = MongoDBObject(
     "name" -> "How Sharding Works",
-    "type" -> "Webinar",
+    "eventType" -> "Webinar",
     "date" -> MongoDBObject(
       "start" -> new DateTime(2011, 2, 4, 13, 0, 0, 0)
     ),
@@ -81,8 +81,8 @@ object CasbahDemo extends Application {
 
   val austBuilder = MongoDBObject.newBuilder
   austBuilder += "name" -> "Mongo Austin"
-  austBuilder += "type" -> "Conference"
-  austBuilder += "subtype" -> "Full Day"
+  austBuilder += "eventType" -> "Conference"
+  austBuilder += "eventSubType" -> "Full Day"
   austBuilder += "location" -> MongoDBObject(
     "venueName" -> "Sheraton Austin",
     "url" -> "http://www.sheratonaustin.com/",
@@ -105,8 +105,8 @@ object CasbahDemo extends Application {
 
   val jpBuilder = MongoDBObject.newBuilder
   jpBuilder += "name" -> "Mongo Tokyo"
-  jpBuilder += "type" -> "Conference"
-  jpBuilder += "subtype" -> "Full Day"
+  jpBuilder += "eventType" -> "Conference"
+  jpBuilder += "eventSubType" -> "Full Day"
   jpBuilder += "location" -> MongoDBObject(
     "venueName" -> "Shinagawa Seaside Rakuten Tower",
     "address" -> "4-12-3 Higashishinagawa, Shinagawa-ku",
@@ -126,8 +126,8 @@ object CasbahDemo extends Application {
 
   val phlBuilder = MongoDBObject.newBuilder
   phlBuilder += "name" -> "Mongo Philly"
-  phlBuilder += "type" -> "Conference"
-  phlBuilder += "subtype" -> "Full Day"
+  phlBuilder += "eventType" -> "Conference"
+  phlBuilder += "eventSubType" -> "Full Day"
   phlBuilder += "location" -> MongoDBObject(
     "venueName" -> "Sheraton Society Hill",
     "url" -> "http://www.starwoodhotels.com/sheraton/search/hotel_detail.html?propertyID=166",
@@ -138,7 +138,7 @@ object CasbahDemo extends Application {
     "country" -> "USA"
   )
   phlBuilder += "hashtag" -> "#mongophilly"
-  phlBuilder += "language" -> "USA"
+  phlBuilder += "language" -> "English"
   phlBuilder += "date" -> MongoDBObject(
     "start" -> new DateTime(2011, 4, 26, 9, 0, 0, 0),
     "end" -> new DateTime(2011, 4, 26, 18, 0, 0, 0)
@@ -151,8 +151,8 @@ object CasbahDemo extends Application {
 
   val cnBuilder = MongoDBObject.newBuilder
   cnBuilder += "name" -> "Mongo Beijing"
-  cnBuilder += "type" -> "Conference"
-  cnBuilder += "subtype" -> "Half Day"
+  cnBuilder += "eventType" -> "Conference"
+  cnBuilder += "eventSubType" -> "Half Day"
   cnBuilder += "location" -> MongoDBObject(
     "venueName" -> "Park Plaza Beijing Science Park",
     "address" -> "25 Zichun Road, Haidan District ",
