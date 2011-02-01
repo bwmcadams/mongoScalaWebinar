@@ -44,7 +44,7 @@ object RogueDemo extends Application {
   // Rogue gives us a saner approach, although still hobbled by some
   // of Lift-MongoDB-Record's limits on embedded docs
 
-  for (x <- Event where (_.eventType eqs EventType.Webinar)) println(x)
+  for (x <- MongoEvent where (_.eventType eqs EventType.Webinar)) println(x)
 
 
 
