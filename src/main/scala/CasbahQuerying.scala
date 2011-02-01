@@ -28,7 +28,7 @@ object CasbahQuerying extends Application {
                       )))) println(x)
   
   // This is getting a bit unwieldy.  Thankfully, Casbah offers a DSL
-  val q = "location.country" $exists true $ne "USA"
+  val q = $or ("location.country" -> "USA", "location.country" -> "Japan")
 
   println("\n Created a DBObject: %s".format(q))
   

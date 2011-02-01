@@ -21,7 +21,7 @@ import net.liftweb.util.TimeHelpers._
 import net.liftweb.util.Helpers._
 
 
-import java.util.Date
+import org.scala_tools.time.Imports._
 
 object LiftRecordDemo extends Application {
   // We'll use enums for Type and Subtype
@@ -51,7 +51,7 @@ object LiftRecordDemo extends Application {
     object hashtag extends OptionalStringField(this, 32)
     object language extends OptionalStringField(this, 32)
     object date extends JsonObjectField[MongoEvent, EventDate](this, EventDate) {
-      def defaultValue = EventDate(new Date, None)
+      def defaultValue = EventDate(new DateTime, None)
     }
 
     object url extends OptionalStringField(this, 255)
@@ -71,7 +71,7 @@ object LiftRecordDemo extends Application {
 
   object EventLocation extends JsonObjectMeta[EventLocation]
 
-  case class EventDate(start: Date, end: Option[Date]) extends JsonObject[EventDate] {
+  case class EventDate(start: DateTime, end: Option[DateTime]) extends JsonObject[EventDate] {
     def meta = EventDate
   }
 

@@ -27,7 +27,7 @@ import net.liftweb.json.JsonAST.JObject
 // Rogue 
 import com.foursquare.rogue.Rogue._
 
-import java.util.Date
+import org.scala_tools.time.Imports._
 
 object RogueDemo extends Application {
   import LiftRecordDemo._
@@ -44,9 +44,34 @@ object RogueDemo extends Application {
   // Rogue gives us a saner approach, although still hobbled by some
   // of Lift-MongoDB-Record's limits on embedded docs
 
-  for (x <- MongoEvent where (_.eventType eqs EventType.Webinar)) println(x)
+  val q = MongoEvent where (_.eventType eqs EventType.Webinar)
+
+  println("Rogue created a Query '%s'\n\n".format(q))
+
+  for (x <- MongoEvent where (_.eventType eqs EventType.Webinar)) {
+    println("Name: %s Presenter: %s\n".format(x.name, x.presenter))
+  }
+
+  // Rogue can also do sorting for you, which is useful
+
+  println("\n\n\n")
+
+  for (x <- MongoEvent where (_.eventType eqs EventType.Conference) 
+                       orderAsc(_.language) andDesc(_.name)) { 
+    println("Name: %s Language: %s\n".format(x.name, x.language))
+  }
+  val start = new DateTime(2011, 2, 1, 0, 0, 0, 0)
+  val end = new DateTime(2011, 3, 1, 0, 0, 0, 0)
+
+    /** The following would be nice but unfortunately, 
+      doesn't work because of lift's current embedded doc
+      implementation
+    */
+  //val dateQ = MongoEvent where (_.date.start after start) 
+                           //and (_.date.end before end)
 
 
+  System.exit(0)
 
 }
 

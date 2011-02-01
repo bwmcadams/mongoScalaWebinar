@@ -24,14 +24,11 @@ import net.liftweb.util.Helpers._
 import net.liftweb.json.JsonDSL._
 import net.liftweb.json.JsonAST.JObject
 
-import java.util.Date
+import org.scala_tools.time.Imports._
 
 object LiftRecordQueryingDemo extends Application {
   import LiftRecordDemo._
-  /**
-   * I don't believe Lift plays nice with Joda, so dereg it
-   */
-  DeregisterJodaTimeConversionHelpers()
+
   
   // Tell Lift about our DB
   val mongoAddr = MongoAddress(MongoHost("127.0.0.1", 27017), "scalaWebinar")
@@ -48,6 +45,11 @@ object LiftRecordQueryingDemo extends Application {
 
   // Unfortunately, limited demo of querying due to Lift's poor
   // embedded document support
+  println("All Webinars...\n\n")
+
+  // Lift wouldn't let me refer to the enum, had to give the String repr.
+  //for (event <- MongoEvent.findAll(MongoEvent.eventType.name -> EventType.Webinar)) println("Webinar: %s\n".format(event))
+  for (event <- MongoEvent.findAll(MongoEvent.eventType.name -> "Webinar")) println("Webinar: %s\n".format(event))
 
   println("All events with a hashtag of #mongophilly\n\n")
   for (x <- MongoEvent.findAll(
